@@ -1,0 +1,185 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="Button Panel.css" type="text/css">
+		<script src="Button Panel.js"></script>
+	</head>
+
+
+	<body>
+		<!-- 在右下角顯示訊息 -->
+		<div id='ShowInfoElemId'>
+			ShowInfoHere
+		</div>
+		<!-- 沒有domain時顯示的url -->
+		<div class='attension' id='NoDomainInfo'>
+			<span id='noDomainTitle'></span><br>
+			Url:<span id='ShowUrl'></span><br>
+		</div>
+		<!-- 設定選單 -->
+		<div id='DomainOptionMenu'>
+			<!-- 開頭訊息 -->
+			<div class='attension'>
+				<span id='showDomainTitle'></span>
+
+				<span id='showDomainElemId'></span><br>
+
+				<span id='openOptionForAllTitle'></span>
+
+				<span id='openOptionForAllPage'>about:addons</span>
+			</div>
+			
+
+			<div class='optionBlock' data-name='EnableReStyleColorFunc'>
+				<div class='toolTip'>
+					<span class='optionTitle'></span>
+
+					<span class='toolTipText optionDescription'></span>
+					<br>
+					<!-- 選項 -->
+					<div class='selectBlock'>
+						<button class="option" data-value="true" data-name='EnableReStyleColorFunc'></button>
+						<button class="option" data-value="false" data-name='EnableReStyleColorFunc'></button>
+						<button class="option" data-value="null" data-name='EnableReStyleColorFunc'></button>
+					</div>
+				</div>
+				
+			</div>
+
+			<!-- 更改的顏色設定為最高優先權 -->
+			<div class='optionBlock' data-name='HighestReStyleColorPriority'>
+				<div class='toolTip'>
+					<span class='optionTitle'></span>
+
+					<span class='toolTipText optionDescription'></span>
+					<br>
+					<div class='selectBlock'>
+						<button class="option" data-value="true" data-name='HighestReStyleColorPriority'></button>
+						<button class="option" data-value="false" data-name='HighestReStyleColorPriority'></button>
+						<button class="option" data-value="null" data-name='HighestReStyleColorPriority'></button>
+					</div>
+				</div>
+			</div>
+			<!-- Change Hover Color -->
+			<div class='optionBlock' data-name='ChangeHoverColor'>
+				<div class='toolTip'>
+					<span class='optionTitle'></span>
+
+					<span class='toolTipText optionDescription'></span>
+
+					<br>
+					<div class='selectBlock'>
+						<button class="option" data-value="true" data-name='ChangeHoverColor'></button>
+						<button class="option" data-value="false" data-name='ChangeHoverColor'></button>
+						<button class="option" data-value="null" data-name='ChangeHoverColor'></button>
+					</div>
+				</div>
+					
+			</div>
+			<!-- 監測Style變更選項 -->
+			<div class='optionBlock' data-name='ObserveStyle'>
+				<div class='toolTip'>
+					<span class='optionTitle'></span>
+
+					<span class='toolTipText optionDescription'></span>
+
+					<br>
+					<div class='selectBlock'>
+						<button class="option" data-value="true" data-name='ObserveStyle'></button>
+						<button class="option" data-value="false" data-name='ObserveStyle'></button>
+						<button class="option" data-value="null" data-name='ObserveStyle'></button>
+					</div>
+				</div>
+					
+			</div>
+
+			
+
+			<!-- 移除背景圖功能 -->
+			<div class='optionBlock' data-name='RemoveBgImg'>
+				<div class='toolTip'>
+					<span class='optionTitle'></span>
+
+					<span class='toolTipText optionDescription'></span>
+
+					<br>
+					<div class='selectBlock'>
+						<button class="option" data-value="true" data-name='RemoveBgImg'></button>
+						<button class="option" data-value="false" data-name='RemoveBgImg'></button>
+						<button class="option" data-value="null" data-name='RemoveBgImg'></button>
+					</div>
+				</div>
+					
+
+			</div>
+			
+			<!-- 字體放大功能 -->
+			<div class='optionBlock' data-name='EnableBiggerFontFunc'>
+				<div class='toolTip'>
+					<span class='optionTitle'></span>
+
+					<span class='toolTipText optionDescription'></span>
+
+					<br>
+					<div class='selectBlock'>
+						<button class="option" data-value="true" data-name='EnableBiggerFontFunc'></button>
+						<button class="option" data-value="false" data-name='EnableBiggerFontFunc'></button>
+						<button class="option" data-value="null" data-name='EnableBiggerFontFunc'></button>
+					</div>
+				</div>
+					
+					
+			</div>
+
+			<!-- 最小字體大小設定 -->
+			<div class='optionBlock' data-name='MinFontSize'>
+				<div class='toolTip'>
+					<span class='optionTitle'></span>
+
+					<span class='toolTipText optionDescription'></span>
+
+					<br>
+					<div class='selectBlock'>
+						<div class="option" data-value='true' data-name='MinFontSize'>
+							<span id='ShowMinFontSizeElem' >13</span> px
+							
+							<!-- 建立最小字體大小設定按鈕 -->
+							<button type='button' id='minFontSizeAddButton'>
+								△
+							</button>
+							<button type='button' id='minFontSizeSubButton'>
+								▽
+							</button>
+						</div>
+
+						<button class="option" data-value="null" data-name='MinFontSize'></button>
+					</div>
+				</div>
+
+					
+			</div>
+
+
+			<!-- 每次更改元素格式的數量 -->
+
+			<div class='optionBlock' data-name='ReStyleElemsAtOneTime'>
+				<div class='toolTip'>
+					<span class='optionTitle'></span>
+
+					<span class='toolTipText optionDescription'></span>
+
+					<br>
+					<div class='selectBlock'>
+						<div class="option" data-value="true" data-name='ReStyleElemsAtOneTime'>
+							<input type="textarea" id="SetReStyleElemsNumAtOneTime">
+						</div>
+						<button class="option" data-value="null" data-name='ReStyleElemsAtOneTime'></button>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<button id='hidePanelElemId'>
+		</button>
+	</body>
+</html>

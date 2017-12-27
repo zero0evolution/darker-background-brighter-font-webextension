@@ -1,0 +1,69 @@
+{
+	"extensionName": {
+		"message": "暗底亮字",
+		"description": "extension name"
+	},
+
+	"extensionDescription": {
+		"message": "使網頁背景顏色變暗、字體顏色變亮，避免s使用者看高亮度的網頁。", 
+		"description":"description"
+	},
+
+
+	"showDomainText":{
+		"message": "在此的設定只針對此頁網域:$URL$"
+	},
+	"cantAccessText":{
+		"message": "不能在此頁運作"
+	},
+	"goGlobalSettingText":{
+		"message": "到全域設定"
+	},
+	"closeSettingPageText":{
+		"message": "關閉選單"
+	},
+
+
+
+
+	"changeColor":{
+		"message": "改變顏色功能"
+	},
+	"changeColor_description":{
+		"message": "開啟此選項使背景顏色變暗，字體顏色變亮"
+	},
+
+
+	"imgBrightness":{
+		"message": "圖片亮度"
+	},
+	"imgBrightness_description":{
+		"message": "調低此值可將圖片亮度調低(1是亮度不變,0是全黑)"
+	},
+
+
+
+	"bgImgBrightness":{
+		"message": "背景圖片亮度"
+	},
+	"bgImgBrightness_description":{
+		"message": "可將背景圖片亮度調低(1是亮度不變,0是全黑)"
+	},
+
+
+
+	"minFontSize":{
+		"message": "字體大小最小值(px)"
+	},
+	"minFontSize_description":{
+		"message": "將小於此值的字體放大到此大小"
+	},
+
+
+	"runTaskQuantityAt1Time":{
+		"message": "每次更改格式的數量"
+	},
+	"runTaskQuantityAt1Time_description":{
+		"message": "這個設定值視運算效能而定,若值太大可能造成瀏覽器卡住或無法回應,若值太小造成更改格式的速度很慢"
+	}
+}

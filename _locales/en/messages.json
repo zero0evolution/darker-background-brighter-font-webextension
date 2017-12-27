@@ -1,0 +1,85 @@
+{
+	"extensionName": {
+		"message": "Darker Background Brighter Font",
+		"description": "description"
+	},
+	"extensionDescription": {
+		"message": "change every web page style,darken background color and brighten text color,prevent users see high brightness web page.", 
+		"description":"description"
+	},
+
+
+
+	
+	"showDomainText":{
+		"message": "This setting page is Just for this domain:$URL$"
+	},
+	"cantAccessText":{
+		"message": "can not work in this page"
+	},
+
+	"goGlobalSettingText":{
+		"message": "If want to go to global setting page,click here"
+	},
+	"closeSettingPageText":{
+		"message": "Close Setting Page"
+	},
+
+
+
+
+	"changeColor":{
+		"message": "Change Color Function"
+	},
+	"changeColor_description":{
+		"message": "Turn on this option to darken background color and brighten font color"
+	},
+
+
+
+	"highestContrastMode":{
+		"message": "Highest Contrast Mode"
+	},
+	"highestContrastMode_description":{
+		"message": "Turn on this option will get 'darkest' background color and 'brightest' font color"
+	},
+
+
+
+	"imgBrightness":{
+		"message": "Image Brightness"
+	},
+	"imgBrightness_description":{
+		"message": "Turn down this value to decrease image brightness, '1' is 'keep original brightness', '0' is darkest(full black)"
+	},
+
+
+
+
+
+	"bgImgBrightness":{
+		"message": "Background Image Brightness"
+	},
+	"bgImgBrightness_description":{
+		"message": "If background image brightness is too high, trun to lower value,1 is 'keep original brightness',0 is darkest(full black)"
+	},
+
+
+
+
+
+	"minFontSize":{
+		"message": "min Font Size(px)"
+	},
+	"minFontSize_description":{
+		"message": "If font size smaller than this value, font size will be enlarged to this value."
+	},
+
+
+	"runTaskQuantityAt1Time":{
+		"message": "Quantity of 'change color elements' at one time"
+	},
+	"runTaskQuantityAt1Time_description":{
+		"message": "'Determining this value' is depending on computing ability of computer. If this value is too big, maybe cause browser stuck or no response; if this value is too low, the 'changing color speed' will be slow."
+	}
+}
