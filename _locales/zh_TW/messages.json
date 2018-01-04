@@ -3,60 +3,64 @@
 		"message": "暗底亮字",
 		"description": "extension name"
 	},
-
 	"extensionDescription": {
-		"message": "使網頁背景顏色變暗、字體顏色變亮，避免s使用者看高亮度的網頁。", 
+		"message": "更改網頁顏色樣式，使背景顏色變暗、字顏色變亮，避免使用者看高亮度網頁。\n\nFirefox addon:\nhttps://addons.mozilla.org/firefox/addon/darker-bg-brighter-font\n現在支援firefox 57+\n\nGoogle chrome extension(old version):\nhttps://chrome.google.com/webstore/detail/mdolidbiejfnaejdoagjacapnichoccj\n\n功能:\n\t背景顏色變暗、字顏色變亮功能\n\t降低圖片與背景圖片亮度\n\t可調整更改頁面格式速度\n\t放大字體功能(預設為關閉)\n\t針對每個網域的設定頁面(在瀏覽網頁時點選附加元件按鈕)\n\t全域設定頁面 (在 about:addons => 此附加元件選項)\n\n在更改設定後,需重新整理網頁,設定才會套用到網頁上\n\n若此附加元件在特定網頁運作不良,可在瀏覽該網頁時點擊附加元件按鈕,設定對此網域不使用功能\n\n此附加元件在以下頁面無法使用:\n\t\"about:*\"\n\t\"https://addons.mozilla.org\"\n",
 		"description":"description"
 	},
 
 
 	"showDomainText":{
-		"message": "在此的設定只針對此頁網域:$URL$"
+		"message": "此選單頁只會套用到現在瀏覽頁面的網域:"
 	},
 	"cantAccessText":{
-		"message": "不能在此頁運作"
+		"message": "基於安全理由，此附加元件不能在此網域運作:"
 	},
 	"goGlobalSettingText":{
-		"message": "到全域設定"
+		"message": "到全域設定頁按此"
 	},
-	"closeSettingPageText":{
-		"message": "關閉選單"
+	"reloadPageText":{
+		"message": "若有更改設定，需要重新整理套用新設定"
+	},
+	"showTaskLenText":{
+		"message": "需改變的elements數量:"
 	},
 
+	"true":{"message":"開啟"},
+	"false":{"message":"關閉"},
+	"null":{"message":"與全域設定同"},
 
 
-
-	"changeColor":{
-		"message": "改變顏色功能"
+	"changeColorFlag":{
+		"message": "變更顏色功能"
 	},
-	"changeColor_description":{
+	"changeColorFlag_description":{
 		"message": "開啟此選項使背景顏色變暗，字體顏色變亮"
 	},
 
 
 	"imgBrightness":{
-		"message": "圖片亮度"
+		"message": "變更圖片亮度"
 	},
 	"imgBrightness_description":{
-		"message": "調低此值可將圖片亮度調低(1是亮度不變,0是全黑)"
+		"message": "調整此值可將圖片亮度調低\n(1是亮度不變,0是全黑)"
 	},
 
 
 
 	"bgImgBrightness":{
-		"message": "背景圖片亮度"
+		"message": "變更背景圖片亮度"
 	},
 	"bgImgBrightness_description":{
-		"message": "可將背景圖片亮度調低(1是亮度不變,0是全黑)"
+		"message": "調整此值可將背景圖片亮度調低\n(1是亮度不變,0是全黑)"
 	},
 
 
 
 	"minFontSize":{
-		"message": "字體大小最小值(px)"
+		"message": "設定字體大小最小值(px)"
 	},
 	"minFontSize_description":{
-		"message": "將小於此值的字體放大到此大小"
+		"message": "將小於此大小的字體放大(會一併更改行高與element高度)\n注意!此選項並不適用於某些網頁\n若開啟此選項，更改格式的速度會降低"
 	},
 
 
@@ -64,6 +68,6 @@
 		"message": "每次更改格式的數量"
 	},
 	"runTaskQuantityAt1Time_description":{
-		"message": "這個設定值視運算效能而定,若值太大可能造成瀏覽器卡住或無法回應,若值太小造成更改格式的速度很慢"
+		"message": "這個設定值視電腦運算效能而定\n若值太大可能造成瀏覽器卡住或無法回應\n若值太小造成更改格式的速度很慢"
 	}
 }

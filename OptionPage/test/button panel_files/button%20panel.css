@@ -1,0 +1,72 @@
+*{
+	font-size:22px;
+}
+body{
+	padding:0px;
+	margin:0px;
+	background-color:#101010;
+	color:#D0D0D0;
+	border:solid 3px rgb(101, 121, 142);
+	/*width:auto;*/
+	height:auto;
+	/*display:block;*/
+}
+button{
+	background-color:inherit;
+	color:#FFFFFF;
+	margin:5px 0px 5px 5px;
+	padding:0px;
+	border-width:1px;
+	border-color:#FFFFFF;
+}
+
+.optionBlock{
+	border:solid 2px #808080;
+	color:#D0D0D0;
+	margin:5px;
+}
+.optionBlock:hover{
+	background-color:#171C21;
+}
+
+.optionName{
+	color:rgb(203, 220, 254);
+}
+
+/*tooltip*/
+.tooltip {
+	position: relative;
+}
+.tooltip:hover {
+	background-color: #272C31;
+}
+.tooltip .tooltiptext {
+	visibility: hidden;
+	background-color: #272C31;
+	border: solid 2px #E8E8E8;
+	color: #E8E8E8;
+	padding: 5px;
+	border-radius: 20px;
+	left:100px;
+	right:0px;
+	/*顯示在下方*/
+	top:120%;
+	/* 顯示位置固定 */
+	position: absolute;
+	/*最上層*/
+	z-index: 1;
+	/*0.5秒淡出動畫*/
+	
+}
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+
+.option{
+	filter:brightness(0.5);
+}
+.active.option,.active.option *{
+	background-color: rgb(24, 50, 10);
+	color:white;
+	filter:brightness(1);
+}

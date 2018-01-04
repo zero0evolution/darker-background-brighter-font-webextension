@@ -1,0 +1,42 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="UTF-8">
+
+		<script src="button%20panel_files/urlToDomain.js"></script>
+		<script src="button%20panel_files/loadOptions.js"></script>
+		<script src="button%20panel_files/saveOptions.js"></script>
+
+		<link rel="stylesheet" href="button%20panel_files/slider.css" type="text/css">
+		<script src="button%20panel_files/createSlider.js"></script>
+
+		<script src="button%20panel_files/createInfoBlock.js"></script>
+		<script src="button%20panel_files/createGoGlobalSettingButton.js"></script>
+		<script src="button%20panel_files/createOptionBlock.js"></script>
+
+		<link rel="stylesheet" href="button%20panel_files/button%2520panel.css" type="text/css">
+		<script src="button%20panel_files/button%2520panel.js"></script>
+
+	</head>
+	<body style="width: 750px; height: auto;">
+		
+	
+<div class="optionBlock">此頁選單只針對此頁網域:<br>https://www.google.com.tw</div>
+<div class="optionBlock">
+	<div class="tooltip">
+		<span class="optionName">改變顏色功能</span>
+		<div class="tooltipText">開啟此選項使背景顏色變暗，字體顏色變亮</div>
+	</div>
+	<div class="selectBlock">
+		<button class="option" data-value="true" data-option-key="changeColorFlag" data-domain="https://www.google.com.tw">開啟</button><button class="option" data-value="false" data-option-key="changeColorFlag" data-domain="https://www.google.com.tw">關閉</button><button class="option active" data-value="null" data-option-key="changeColorFlag" data-domain="https://www.google.com.tw">與全域設定同</button>
+	</div>
+</div>
+<div class="optionBlock">
+	<div class="tooltip">
+		<span class="optionName">圖片亮度</span>
+		<div class="tooltipText">調低此值可將圖片亮度調低(1是亮度不變,0是全黑)</div>
+	</div>
+	<div class="selectBlock">
+		<span class="sliderContainer option" data-option-key="imgBrightness" data-domain="https://www.google.com.tw" data-value="1">
+			<input min="0" max="1" step="0.05" class="slider active" value="1" type="range"><span>1</span>
+		</span>
+		<button class="option" data-value="false" data-option-key="imgBrightness" data-domain="https://www.google.com.tw">關閉</button><button class="option active" data-value="null" data-option-key="imgBrightness" data-domain="https://www.google.com.tw">與全域設定同</button></div></div><div class="optionBlock"><div class="tooltip"><span class="optionName">背景圖片亮度</span><div class="tooltipText">可將背景圖片亮度調低(1是亮度不變,0是全黑)</div></div><div class="selectBlock"><span class="sliderContainer option" data-option-key="bgImgBrightness" data-domain="https://www.google.com.tw"><input min="0" max="1" step="0.05" class="slider" value="1" type="range"><span>1</span></span><button class="option" data-value="false" data-option-key="bgImgBrightness" data-domain="https://www.google.com.tw">關閉</button><button class="option active" data-value="null" data-option-key="bgImgBrightness" data-domain="https://www.google.com.tw">與全域設定同</button></div></div><div class="optionBlock"><div class="tooltip"><span class="optionName">字體大小最小值(px)</span><div class="tooltipText">將小於此值的字體放大到此大小</div></div><div class="selectBlock"><span class="sliderContainer option" data-option-key="minFontSize" data-domain="https://www.google.com.tw"><input min="12" max="48" step="1" class="slider" value="12" type="range"><span>12</span></span><button class="option" data-value="false" data-option-key="minFontSize" data-domain="https://www.google.com.tw">關閉</button><button class="option active" data-value="null" data-option-key="minFontSize" data-domain="https://www.google.com.tw">與全域設定同</button></div></div><div class="optionBlock"><div class="tooltip"><span class="optionName">每次更改格式的數量</span><div class="tooltipText">這個設定值視運算效能而定,若值太大可能造成瀏覽器卡住或無法回應,若值太小造成更改格式的速度很慢</div></div><div class="selectBlock"><span class="sliderContainer option" data-option-key="runTaskQuantityAt1Time" data-domain="https://www.google.com.tw"><input min="1" max="100" step="1" class="slider" value="20" type="range"><span>20</span></span><button class="option" data-value="false" data-option-key="runTaskQuantityAt1Time" data-domain="https://www.google.com.tw">關閉</button><button class="option active" data-value="null" data-option-key="runTaskQuantityAt1Time" data-domain="https://www.google.com.tw">與全域設定同</button></div></div><button id="goGlobalSettingButton">到全域設定頁按此</button></body></html>

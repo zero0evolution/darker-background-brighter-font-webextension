@@ -1,46 +1,52 @@
 {
-	"name": "Darker Background Brighter Font",
+	"name": "__MSG_extensionName__",
 
 	"author": "zero0evolution",
 
-	"description":"change every web page style,darken background color and brighten text color,prevent user see high brightness web page.",
+	"description":"__MSG_extensionDescription__",
 
-	"version":"0.4.0",
+	"version":"0.4.2",
 
 	"icons": {
-		"16": "icon-16.png",
-		"32": "icon-32.png",
-		"64": "icon-64.png",
-		"128": "icon-128.png"
+		"64": "icons/icon-64.png"
 	},
 
 	"applications": {
 		"gecko": {
-			"id": "darker-background-brighter-font@zero0evolution",
-			"strict_min_version": "52"
+			"id": "@darkerbackgroundbrighterbiggerfontaddon",
+			"strict_min_version": "52.0"
 		}
 	},
 
-	"permissions": ["<all_urls>","storage","webRequest","activeTab"],
+	"permissions": [
+		"<all_urls>",
+		"storage",
+		"webRequest",
+		"activeTab",
+		"notifications"
+	],
 	"optional_permissions": [],
 	
 	"background": {
-		// "page":"",
-		"scripts": ["Background.js"]
+		"scripts": [
+			"lib/getBrowserInfo.js",
+			"lib/loadOptions.js",
+			"lib/saveOptions.js",
+			"optionInfo.js",
+			"background.js"
+		]
 	},
 
-	// 選單
 	"options_ui": {
-		"page": "Option Page.html",
+		"page": "OptionPage/optionPage.html",
 		"browser_style":false,
 		"open_in_tab":false
 	},
 
-	// 工具列按鈕
 	"browser_action": {
-		"default_icon": "icon-64.png",
-		"default_title": "針對這個網域設定",
-		"default_popup": "Button Panel.html"
+		"default_title": "__MSG_extensionName__",
+		"default_icon": "icons/icon-64.png",
+		"default_popup": "OptionPage/buttonPanel.html"
 	},
 
 	"content_scripts": [
@@ -51,41 +57,40 @@
 			"match_about_blank":true,
 			"run_at":"document_start",
 			"js": [
-				"content script/optionInfo.js",
-				"content script/propertyInfo.js",
+				"optionInfo.js",
+				"lib/urlToDomain.js",
+				"lib/loadOptions.js",
+				"lib/checkObjEqual.js",
+				
 
-				"content script/customCss.js",
+				"ContentScript/getBrowserVersion.js",
+				"ContentScript/propertyInfo.js",
+				"ContentScript/customCss.js",
+				"ContentScript/addWhiteBorder.js",
+				"ContentScript/changeMinFontSize.js",
+				"ContentScript/checkElemHasTextNode.js",
+				"ContentScript/getSelectorText.js",
+				"ContentScript/oldStyleTransFunc.js",
+				"ContentScript/nodeToFuncPointer.js",
+				"ContentScript/reStyleFunc.js",
+				"ContentScript/task.js",
+				"ContentScript/setTopIfNoProperty.js",
 
-				"content script/addWhiteBorder.js",
-				"content script/changeMinFontSize.js",
-				"content script/checkElemHasTextNode.js",
-				"content script/checkObjEqual.js",
-				"content script/getSelectorText.js",
-				"content script/getSpendTime.js",
+				"ContentScript/brightnessTrans/bgImgStrBrightnessTrans.js",
+				"ContentScript/brightnessTrans/colorNameToRgb.js",
+				"ContentScript/brightnessTrans/colorStrBrightnessTrans.js",
+				"ContentScript/brightnessTrans/colorTransRecordObj.js",
+				"ContentScript/brightnessTrans/fullColorStrBrightnessTransFunc.js",
+				"ContentScript/brightnessTrans/imgElemBrightnessTrans.js",
+				"ContentScript/brightnessTrans/rgbNumsBrightnessTrans.js",
+				"ContentScript/brightnessTrans/styleSheetBrightnessTransFunc.js",
 
-				"content script/oldStyleTransFunc.js",
-				"content script/nodeToFuncPointer.js",
-				"content script/reStyleFunc.js",
-				"content script/task.js",
-
-				"content script/imgToData.js",
-
-				"content script/brightnessTrans/bgImgStrBrightnessTrans.js",
-				"content script/brightnessTrans/colorNameToRgb.js",
-				"content script/brightnessTrans/colorStrBrightnessTrans.js",
-				"content script/brightnessTrans/colorTransRecordObj.js",
-				"content script/brightnessTrans/fullColorStrBrightnessTransFunc.js",
-				"content script/brightnessTrans/getImgBrightness.js",
-				"content script/brightnessTrans/imgElemBrightnessTrans.js",
-				"content script/brightnessTrans/rgbNumsBrightnessTrans.js",
-				"content script/brightnessTrans/styleSheetBrightnessTransFunc.js",
-
-				"content script/creatNewNodeObserver.js",
-				"content script/creatStyleSheetMutationObserver.js",
+				"ContentScript/creatNewNodeObserver.js",
+				"ContentScript/creatStyleSheetMutationObserver.js",
 
 
-				"content script/init.js",
-				"content script/main.js"
+				"ContentScript/init.js",
+				"ContentScript/main.js"
 			]
 		}
 	],
@@ -93,10 +98,7 @@
 	"homepage_url": "https://addons.mozilla.org/firefox/addon/darker-bg-brighter-font",
 
 	"default_locale":"en",
-	// 
-	// "content_security_policy": "default-src "self"",
-	// 列出所有希望讓網頁可以存取的檔案
-	// "web_accessible_resources": ["content script/customCss.css"],
+	
 	"manifest_version":2
 	
 }

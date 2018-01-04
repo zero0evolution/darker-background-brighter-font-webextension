@@ -1,56 +1,49 @@
 {
 	"extensionName": {
 		"message": "Darker Background Brighter Font",
-		"description": "description"
+		"description": "extension name"
 	},
 	"extensionDescription": {
-		"message": "change every web page style,darken background color and brighten text color,prevent users see high brightness web page.", 
+		"message": "Change every web page style,darken background color and brighten font color,prevent users see high brightness web page.\n\nFirefox addon:\nhttps://addons.mozilla.org/firefox/addon/darker-bg-brighter-font\nNow support firefox 57+\n\nGoogle chrome extension(old version):\nhttps://chrome.google.com/webstore/detail/mdolidbiejfnaejdoagjacapnichoccj\n\nFeatures:\n\tDarken background color and brighten font color\n\tDecrease image and background image brightness\n\tAdjust \"change style speed\"\n\tEnlarge font size (default trun off)\n\tSetting page for every domain (click the addon button when user browsing).\n\tGlobal setting page for all domain (in about:addons => this addon options)\n\nAfter changing options, users need reload page, let option setting apply to page.\n\nIf this addon have bad effect in particular page, go to that page and click the addon button, set option off, make function just don't use in that current domain.\n\nThis addon can not active in those pages:\n\t\"about:*\"\n\t\"https://addons.mozilla.org\"\n",
 		"description":"description"
 	},
 
-
-
 	
 	"showDomainText":{
-		"message": "This setting page is Just for this domain:$URL$"
+		"message": "This option page is Only for this domain of current page:"
 	},
 	"cantAccessText":{
-		"message": "can not work in this page"
+		"message": "For Security reason,this add-on can not work in this domain:"
 	},
-
 	"goGlobalSettingText":{
-		"message": "If want to go to global setting page,click here"
+		"message": "Click here go to global setting page"
 	},
-	"closeSettingPageText":{
-		"message": "Close Setting Page"
+	"reloadPageText":{
+		"message": "If change setting, need reload page to apply new setting"
+	},
+	"showTaskLenText":{
+		"message": "need change elements number:"
 	},
 
+	"true":{"message":"ON"},
+	"false":{"message":"OFF"},
+	"null":{"message":"Same as global setting"},
+	
 
-
-
-	"changeColor":{
+	"changeColorFlag":{
 		"message": "Change Color Function"
 	},
-	"changeColor_description":{
-		"message": "Turn on this option to darken background color and brighten font color"
-	},
-
-
-
-	"highestContrastMode":{
-		"message": "Highest Contrast Mode"
-	},
-	"highestContrastMode_description":{
-		"message": "Turn on this option will get 'darkest' background color and 'brightest' font color"
+	"changeColorFlag_description":{
+		"message": "Turn on this option to darken background color and brighten font color."
 	},
 
 
 
 	"imgBrightness":{
-		"message": "Image Brightness"
+		"message": "Change Image Brightness"
 	},
 	"imgBrightness_description":{
-		"message": "Turn down this value to decrease image brightness, '1' is 'keep original brightness', '0' is darkest(full black)"
+		"message": "Turn down this value to decrease image brightness.\n'1' is 'keep original brightness', '0' is darkest(full black)."
 	},
 
 
@@ -58,28 +51,27 @@
 
 
 	"bgImgBrightness":{
-		"message": "Background Image Brightness"
+		"message": "Change Background Image Brightness"
 	},
 	"bgImgBrightness_description":{
-		"message": "If background image brightness is too high, trun to lower value,1 is 'keep original brightness',0 is darkest(full black)"
+		"message": "Turn down this value to decrease background image brightness.\n'1' is 'keep original brightness','0' is darkest(full black)."
 	},
-
 
 
 
 
 	"minFontSize":{
-		"message": "min Font Size(px)"
+		"message": "Set min Font Size(px)"
 	},
 	"minFontSize_description":{
-		"message": "If font size smaller than this value, font size will be enlarged to this value."
+		"message": "If font size smaller than this value(px), font size will be enlarged to this value Size(px).(also enlarge line-height and element height)\nNOTICE!This option is NOT suitable for some web site.\nIf trun ON this option, 'changing style speed' will be slower."
 	},
 
 
 	"runTaskQuantityAt1Time":{
-		"message": "Quantity of 'change color elements' at one time"
+		"message": "Quantity of 'change style elements' at one time"
 	},
 	"runTaskQuantityAt1Time_description":{
-		"message": "'Determining this value' is depending on computing ability of computer. If this value is too big, maybe cause browser stuck or no response; if this value is too low, the 'changing color speed' will be slow."
+		"message": "'Determining this value' is depending on computing ability of computer.\nIf this value is too big, maybe cause browser stuck or no response;\nIf this value is too low, the 'changing style speed' will be slow."
 	}
 }
