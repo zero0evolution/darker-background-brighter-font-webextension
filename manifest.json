@@ -5,7 +5,6 @@
 
 	"description":"__MSG_extensionDescription__",
 
-	"version":"0.4.2",
 
 	"icons": {
 		"64": "icons/icon-64.png"

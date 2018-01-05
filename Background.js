@@ -28,11 +28,15 @@ init()
 
 // 顏色轉換調整
 
+// 在頁面內開啟選單(取消存取頁面權限)
+
 // 頁面下每個iframe 都有自己的domain
 
 // 建立elem style mutation observer
 
 // bug:
+// 背景圖片自動repeat
+// https://wiki.mozilla.org/Add-ons/Extension_Signing#Unbranded_Builds
 
 // background-image 混在暗色背景中看不到
 // https://translate.google.com.tw/?hl=zh-TW&tab=wT#en/zh-TW

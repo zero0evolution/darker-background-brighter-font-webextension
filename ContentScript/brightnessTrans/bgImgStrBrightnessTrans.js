@@ -44,10 +44,10 @@ var initBackgroundPropertyToValue = {
 }
 
 var newBackgroundPropertyToValue = {
-	"background-repeat":"repeat",
+	"background-repeat":"no-repeat",
 	"background-attachment":"fixed",
 	"background-position": "0% 0%",
-	"background-size": "auto auto",
+	"background-size": "100% 100%",
 	"background-origin": "padding-box",
 	"background-clip": "padding-box",
 }
