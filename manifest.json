@@ -5,7 +5,7 @@
 
 	"description":"__MSG_extensionDescription__",
 
-	"version":"0.4.4",
+	"version":"0.4.5",
 
 	"icons": {
 		"64": "icons/icon-64.png"
@@ -22,31 +22,40 @@
 		"<all_urls>",
 		"storage",
 		"webRequest",
-		"activeTab",
-		"notifications"
+		"webNavigation",
+		"activeTab"
 	],
+
 	"optional_permissions": [],
+
+	"web_accessible_resources": [],
 	
 	"background": {
 		"scripts": [
 			"lib/getBrowserInfo.js",
 			"lib/loadOptions.js",
 			"lib/saveOptions.js",
+			"lib/urlToDomain.js",
+			"lib/checkUrlRestriction.js",
 			"optionInfo.js",
 			"background.js"
 		]
 	},
-
-	"options_ui": {
-		"page": "OptionPage/optionPage.html",
+	"options_ui":{
+		"page": "OptionPage/buttonPanel.html",
 		"browser_style":false,
 		"open_in_tab":false
 	},
+	"page_action": {
+		"default_popup": "OptionPage/buttonPanel.html",
+		"default_title": "__MSG_extensionName__",
+		"default_icon": "icons/icon-64.png"
+	},
 
 	"browser_action": {
+		"default_popup": "OptionPage/buttonPanel.html",
 		"default_title": "__MSG_extensionName__",
-		"default_icon": "icons/icon-64.png",
-		"default_popup": "OptionPage/buttonPanel.html"
+		"default_icon": "icons/icon-64.png"
 	},
 
 	"content_scripts": [
@@ -61,11 +70,11 @@
 				"lib/urlToDomain.js",
 				"lib/loadOptions.js",
 				"lib/checkObjEqual.js",
+				"lib/loadCustomCss.js",
 				
 
 				"ContentScript/getBrowserVersion.js",
 				"ContentScript/propertyInfo.js",
-				"ContentScript/customCss.js",
 				"ContentScript/addWhiteBorder.js",
 				"ContentScript/changeMinFontSize.js",
 				"ContentScript/checkElemHasTextNode.js",

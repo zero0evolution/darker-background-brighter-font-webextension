@@ -4,22 +4,29 @@
 		"description": "extension name"
 	},
 	"extensionDescription": {
-		"message": "Change every web page style,darken background color and brighten font color,prevent users see high brightness web page.\n\nFirefox addon(Now support firefox 57+):\nhttps://addons.mozilla.org/firefox/addon/darker-bg-brighter-font\n\nGoogle chrome extension(old version):\nhttps://chrome.google.com/webstore/detail/mdolidbiejfnaejdoagjacapnichoccj\n\nFeatures:\n  Darken background color and brighten font color\n  Decrease image and background image brightness\n  Adjustable \"change style speed\"\n  Enlarge font size (default trun off)\n  Setting page for every domain (click the addon button when user browsing)\n  Global setting page for all domain (in about:addons => this addon options)\n\nAfter changing options, users need reload page, let option setting apply to page.\n\nIf this addon have bad effect in particular page, go to that page and click the addon button, set option off, make function just don't use in that current domain.\n\nFor security reason, addon can not work in those domain:\n  \"about:*\"\n  \"https://addons.mozilla.org\"\n\nOpen source in github:\nhttps://github.com/zero0evolution/darker-background-brighter-font-webextension/\n\nUser can report bug in github issues:\nhttps://github.com/zero0evolution/darker-background-brighter-font-webextension/issues\n\nSupport developer:\nhttps://www.paypal.me/zero0evolution/0USD\n",
+		"message": "Change every web page style, darken background color and brighten font color, prevent users see high brightness web page.",
 		"description":"description"
 	},
 
-	
-	"showDomainText":{
-		"message": "This option page is Only for this domain of current page:"
+	"supportDeveloperText":{
+		"message": "Support Developer"
 	},
+	
+	"selectDomainText":{
+		"message": "Select domain:"
+	},
+	"globalSettingText":{
+		"message": "Global Setting Page"
+	},
+
 	"cantAccessText":{
-		"message": "For security reason,this add-on can not work in this domain:"
+		"message": "Because browser restriction,this add-on can not work in this domain."
 	},
 	"goGlobalSettingText":{
 		"message": "Click here go to global setting page"
 	},
-	"reloadPageText":{
-		"message": "If change setting, need reload page to apply new setting"
+	"reloadText":{
+		"message": "If change setting, need reload page to apply new setting."
 	},
 	"showTaskLenText":{
 		"message": "need change elements number:"

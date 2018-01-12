@@ -40,8 +40,13 @@ var processTask = function(){
 	}
 }
 
+var showTasksLenElem = null
+
 var creatShowTasksLenElem = function(){
-	var showTasksLenElem = document.createElement("div")
+	if(showTasksLenElem instanceof Element){
+		return(null)
+	}
+	showTasksLenElem = document.createElement("div")
 	showTasksLenElem.style.position = "fixed"
 	showTasksLenElem.style.bottom = "0px"
 	showTasksLenElem.style.right = "0px"
@@ -70,15 +75,16 @@ var creatShowTasksLenElem = function(){
 	document.body.appendChild(showTasksLenElem)
 
 	var updateTasksLen = function(elem){
-		if((nodeTasks.length+hideNodeTasks.length)>0){
+		var tasksSum = nodeTasks.length+hideNodeTasks.length
+		if(tasksSum>1){
 			elem.innerText = 
-				browser.i18n.getMessage("showTaskLenText")+
-				String(nodeTasks.length)+","+String(hideNodeTasks.length)
+				browser.i18n.getMessage("showTaskLenText")+String(tasksSum)
 
 			setTimeout(updateTasksLen,500,elem)
 		}
 		else{
 			elem.remove()
+			showTasksLenElem = null
 		}
 	}
 	updateTasksLen(showTasksLenElem)

@@ -1,26 +1,23 @@
 .sliderContainer{
-	background-color: inherit;
-	border-width:1px;
-	margin:5px 0px 5px 5px;
-	padding:0px;
-	border-color:white;
-	border-style:solid;
 }
 .slider {
 	vertical-align:middle;
-	height: 15px;
+	height: 1em;
 	background-color: transparent;
 	outline: none;
 	-moz-appearance: none;
+	max-width:60vw;
+	margin:0px;
+	border-width:0px;
 	/*-webkit-appearance: none;   Override default CSS styles */
 }
 
 .slider::-moz-range-thumb {
-	width: 15px;
-	height: 15px;
+	width: 0.8em;
+	height: 0.8em;
 	background-color: #004000;
 	/*border-color: #004000;*/
-	border-width:2px;
+	border-width:0.1em;
 	cursor: pointer;
 }
 

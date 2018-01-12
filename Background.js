@@ -23,10 +23,31 @@ var init = async function(){
 		}
 		saveOptions(initGlobalSetting)
 	}
+
+	// 設定每個頁面都顯示pageAction
+	browser.tabs.query({}).then(
+		(tabs) => {
+			for (let tab of tabs) {
+				browser.pageAction.show(tab.id)
+			}
+		}
+	)
+	browser.tabs.onUpdated.addListener(
+		(tabId, changeInfo, tab) => {
+			browser.pageAction.show(tab.id)
+		}
+	)
 }
 init()
 
+
+// input text color
+
+// 顯示剩餘數量bug
+
 // 顏色轉換調整
+
+// 儲存次數修改
 
 // 在頁面內開啟選單(取消存取頁面權限)
 
@@ -35,9 +56,6 @@ init()
 // 建立elem style mutation observer
 
 // bug:
-// 背景圖片自動repeat
-// https://wiki.mozilla.org/Add-ons/Extension_Signing#Unbranded_Builds
-
 // background-image 混在暗色背景中看不到
 // https://translate.google.com.tw/?hl=zh-TW&tab=wT#en/zh-TW
 // 偵測圖片亮度 調整圖片亮度
@@ -69,8 +87,6 @@ init()
 // 實在沒辦法，也許可以新建立一個iframe?
 
 // border-image
-
-// math element
 
 // 暗底亮字功能無法套用在web file
 // https://raw.githubusercontent.com/mdn/webextensions-examples/master/devtools-panels/manifest.json

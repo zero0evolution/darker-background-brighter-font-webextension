@@ -3,7 +3,7 @@ var createReloadButton = function(){
 	reloadBlock.classList.add("optionBlock")
 
 	var textElem = document.createElement("span")
-	textElem.innerText = browser.i18n.getMessage("reloadPageText")
+	textElem.innerText = browser.i18n.getMessage("reloadText")
 	reloadBlock.appendChild(textElem)
 
 	var reloadButton = document.createElement("Button")
@@ -12,8 +12,8 @@ var createReloadButton = function(){
 		window.close()
 	}
 	var reloadImgElem = document.createElement("img")
-	reloadImgElem.style.height = "32px"
-	reloadImgElem.style.width = "32px"
+	reloadImgElem.style.height = "1em"
+	reloadImgElem.style.width = "1em"
 	reloadImgElem.src = browser.extension.getURL("../icons/reloadIcon.png")
 	reloadButton.appendChild(reloadImgElem)
 	reloadBlock.appendChild(reloadButton)

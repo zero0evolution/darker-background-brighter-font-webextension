@@ -8,6 +8,7 @@ var createSlider = function(eachOptionInfo){
 	}
 
 	var sliderContainerElem = document.createElement("span")
+	sliderContainerElem.style.setProperty("min-width","30%")
 	sliderContainerElem.classList.add("sliderContainer")
 	sliderContainerElem.classList.add("option")
 	sliderContainerElem.dataset.value = value
@@ -26,6 +27,8 @@ var createSlider = function(eachOptionInfo){
 	sliderElem.oninput = function(event){
 		event.target.nextElementSibling.innerText = event.target.value
 		event.target.parentElement.dataset.value = event.target.value
+		event.stopPropagation()
+		event.target.parentElement.click()
 	}
 	sliderElem.onclick = function(event){
 		event.stopPropagation()
@@ -38,6 +41,7 @@ var createSlider = function(eachOptionInfo){
 	var showValueElem = document.createElement("span")
 	showValueElem.innerText = value
 	showValueElem.style.setProperty("pointer-events","none")
+	showValueElem.style.setProperty("background-color","transparent")
 	sliderContainerElem.appendChild(showValueElem)
 	
 	return(sliderContainerElem)

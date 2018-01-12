@@ -57,7 +57,8 @@ var createSelectBlock = function(domain,optionKey,eachOptionInfo,hasNullButtonFl
 	if(hasNullButtonFlag){allValues.push(null)}
 
 	for(let eachValue of allValues){
-		var optionElem = document.createElement("button")
+		var optionElem = document.createElement("div")
+		optionElem.style.display = "inline-block"
 		optionElem.classList.add("option")
 		if(eachOptionInfo.value === eachValue){
 			optionElem.classList.add("active")
@@ -82,7 +83,7 @@ var createSelectBlock = function(domain,optionKey,eachOptionInfo,hasNullButtonFl
 
 			// show notification
 			
-			var optionKey = optionElem.dataset.optionKey
+			/*var optionKey = optionElem.dataset.optionKey
 			var domain = optionElem.dataset.domain
 			var value = optionElem.dataset.value
 			if(typeof(JSON.parse(value)) === "number"){
@@ -106,7 +107,7 @@ var createSelectBlock = function(domain,optionKey,eachOptionInfo,hasNullButtonFl
 				function(notificationId){
 					browser.notifications.clear(notificationId)
 				},3000,notificationId
-			)
+			)*/
 
 			// save option
 			var	saveOptionObj = {}

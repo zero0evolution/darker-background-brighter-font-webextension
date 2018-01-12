@@ -4,7 +4,7 @@ var nodeToFuncPointer = function(node){
 		if(node.dataset instanceof DOMStringMap){
 			// changeStyleTimes
 			if(node.dataset.hasOwnProperty("changeStyleTimes")){
-				var count = Number(node.dataset.changeStyleCount)+1
+				var count = Number(node.dataset.changeStyleTimes)+1
 			}
 			else{
 				var count = 1
@@ -66,7 +66,7 @@ var imgElemFunc = function(elem){
 					getComputedStyle(elem),elem.style,
 					optionInfo.imgBrightness.value)
 			}
-		},300,elem
+		},0,elem
 	)
 }
 
@@ -121,6 +121,7 @@ var tagNameToFunc = {
 	"meta":noFunc,
 	"title":noFunc,
 	"noscript":noFunc,
+	"br":noFunc,
 	"head":function(elem){return(true)},
 	"math":function(elem){},
 	// 

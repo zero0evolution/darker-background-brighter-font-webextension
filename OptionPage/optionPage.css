@@ -1,29 +1,40 @@
 *{
-	font-size:22px;
 	vertical-align: middle;
-	font-family: "Monaco","Ping-Fang TC";
 }
 body{
 	padding:0px;
 	margin:0px;
 	background-color:#101010;
 	color:#D0D0D0;
-	border:solid 3px rgb(101, 121, 142);
+	border-width:0.1em;
+	border-color:rgb(101, 121, 142);
+	border-style:solid;
 	height:auto;
 }
-button{
+button,#goGlobalSettingButton,#supportDeveloperButton,.option{
 	background-color:inherit;
 	color:#FFFFFF;
-	margin:5px 0px 5px 5px;
+	margin:0.1em 0px 0.1em 0.1em;
 	padding:0px;
-	border-width:1px;
+	border-width:0.05em;
 	border-color:#FFFFFF;
+	border-style:solid;
+	display:inline-block;
+	cursor:initial;
+	user-select:none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	max-width:90vw;
 }
-
-.optionBlock{
-	border:solid 2px #808080;
+select,option,optgroup{
+	background-color:#101010;
 	color:#D0D0D0;
-	margin:3px;
+	max-width:95vw;
+}
+.optionBlock{
+	border:solid 0.1em #808080;
+	color:#D0D0D0;
+	margin:0.1em;
 }
 .optionBlock:hover{
 	background-color:#171C21;
@@ -36,6 +47,7 @@ button{
 /*tooltip*/
 .tooltip {
 	position: relative;
+	/*display:inline-block;*/
 }
 .tooltip:hover {
 	background-color: #272C31;
@@ -43,25 +55,25 @@ button{
 .tooltip .tooltiptext {
 	visibility: hidden;
 	background-color: #272C31;
-	border: solid 1px #E8E8E8;
+	border: solid 0.1em #E8E8E8;
 	color: #E8E8E8;
-	padding: 5px;
-	border-radius: 10px;
-	left:200px;
-	right:0px;
+	padding: 0.1em;
+	border-radius: 0.4em;
+	left:15%;
+	right:0%;
 	/*顯示在下方*/
-	top:-150%;
-	bottom:auto;
+	top:auto;
+	bottom:100%;
 	/* 顯示位置固定 */
 	position: absolute;
 	/*最上層*/
 	z-index: 1;
 	/*0.5秒淡出動畫*/
+	font-size:0.9rem;
+	line-height:1em;
 
 	pointer-events:none;
 	opacity: 0.9;
-	font-size:22px;
-	line-height:26px;
 }
 .tooltip:hover .tooltiptext {
 	visibility: visible;

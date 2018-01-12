@@ -4,21 +4,28 @@
 		"description": "extension name"
 	},
 	"extensionDescription": {
-		"message": "更改網頁顏色樣式，使背景顏色變暗、字顏色變亮，避免使用者看高亮度網頁。\n\nFirefox 附加元件(現在支援firefox 57+):\nhttps://addons.mozilla.org/firefox/addon/darker-bg-brighter-font\n\nGoogle chrome 擴充功能(舊版本):\nhttps://chrome.google.com/webstore/detail/mdolidbiejfnaejdoagjacapnichoccj\n\n功能:\n  背景顏色變暗、字顏色變亮功能\n  降低圖片與背景圖片亮度\n  可調整更改頁面格式速度\n  放大字體功能(預設為關閉)\n  針對每個網域的設定頁面(在瀏覽網頁時點選附加元件按鈕)\n  全域設定頁面 (在 about:addons => 此附加元件選項)\n\n在更改設定後，需重新整理網頁，設定才會套用到網頁上\n\n若此附加元件在特定網頁運作不良，可在瀏覽該網頁時點擊附加元件按鈕，設定對此網域不使用功能\n\n此附加元件在以下頁面無法使用:\n  \"about:*\"\n  \"https://addons.mozilla.org\"\n\n開放程式碼於github:\nhttps://github.com/zero0evolution/darker-background-brighter-font-webextension/\n\n可在github issues回報錯誤:\nhttps://github.com/zero0evolution/darker-background-brighter-font-webextension/issues\n\n支援開發者\nhttps://www.paypal.me/zero0evolution/0USD\n",
+		"message": "更改網頁顏色樣式，使背景顏色變暗、字顏色變亮，避免使用者看高亮度網頁。",
 		"description":"description"
 	},
 
-
-	"showDomainText":{
-		"message": "此選單頁只會套用到現在瀏覽頁面的網域:"
+	"supportDeveloperText":{
+		"message": "支持開發者"
 	},
+
+	"selectDomainText":{
+		"message": "選擇網域:"
+	},
+	"globalSettingText":{
+		"message": "全域設定頁"
+	},
+
 	"cantAccessText":{
-		"message": "基於安全理由，此附加元件不能在此網域運作:"
+		"message": "因為瀏覽器限制，此附加元件不能在此網域運作"
 	},
 	"goGlobalSettingText":{
 		"message": "到全域設定頁按此"
 	},
-	"reloadPageText":{
+	"reloadText":{
 		"message": "若有更改設定，需要重新整理套用新設定"
 	},
 	"showTaskLenText":{
