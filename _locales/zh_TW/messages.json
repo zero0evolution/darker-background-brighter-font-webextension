@@ -15,6 +15,9 @@
 	"selectDomainText":{
 		"message": "選擇網域:"
 	},
+	"selectDomainDescription":{
+		"message":"使用者可針對每個網域使用不同的設定"
+	},
 	"globalSettingText":{
 		"message": "全域設定頁"
 	},
@@ -31,6 +34,19 @@
 	"showTaskLenText":{
 		"message": "需改變的elements數量:"
 	},
+
+
+	"commentInMozilla":{
+		"message": "在 addons.mozilla.org 評論"
+	},
+	"commentInGoogle":{
+		"message": "在 google web store 評論"
+	},
+	"reportBugInGithub":{
+		"message": "在 github 回報錯誤"
+	},
+
+	
 
 	"true":{"message":"開啟"},
 	"false":{"message":"關閉"},

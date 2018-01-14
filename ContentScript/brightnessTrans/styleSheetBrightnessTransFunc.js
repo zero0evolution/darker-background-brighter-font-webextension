@@ -13,7 +13,12 @@ var styleSheetBrightnessTransFunc = function(sheet){
 			return(true)
 		}
 		else{
-			console.warn("styleSheetBrightnessTransFunc:sheet.cssRules is not CSSRuleList:",sheet)
+			if((!sheet.disabled) && sheet.href){
+				try{
+					requestStyleSheetLink(sheet)
+				}
+				catch(error){console.error(error)}
+			}
 		}
 	}
 	catch(error){
@@ -25,15 +30,11 @@ var styleSheetBrightnessTransFunc = function(sheet){
 				try{
 					requestStyleSheetLink(sheet)
 				}
-				catch(error){
-					console.warn(error)
-				}
+				catch(error){console.error(error)}
 			}
 		}
 		//其他問題
-		else{
-			console.error(error)
-		}
+		else{console.error(error)}
 	}
 	return(false)
 }

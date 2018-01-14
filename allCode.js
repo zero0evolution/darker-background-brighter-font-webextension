@@ -50,6 +50,38 @@ var optionInfo = {
 		defaultNumValue:1,
 	},
 }
+
+var getBrowserVersion = function(){
+	var matchVersionObj = navigator.userAgent.match(
+		/(?:firefox|chrome)\/(\d+(?:\.\d+)?)/im)
+	if(matchVersionObj){
+		var version = Number(matchVersionObj[1])
+		return(version)
+	}
+	return(1)
+}
+var browserVersion = getBrowserVersion()
+
+var browserType = ""
+if(typeof(browser) !== "undefined"){
+	browserType = "Firefox"
+	if(navigator.userAgent.match(/mobile/i)){
+		browserType+=" Mobile"
+	}
+}
+else{
+	if(typeof(chrome) !== "undefined"){
+		var browser = chrome
+		browserType = "Chrome"
+	}
+}
+
+
+if(!(browserType === "Firefox" && browserVersion<57)){
+	optionInfo.runTaskQuantityAt1Time.value = 20
+	optionInfo.runTaskQuantityAt1Time.defaultNumValue = 20
+}
+
 var urlToDomain = function(url){
 	var domain = url
 	// 解析 domain
@@ -58,20 +90,30 @@ var urlToDomain = function(url){
 
 	return(domain)
 }
-/*var loadOptions = function(domains){
+var loadOptions = function(domains){
 	return(
 		new Promise(
 			function(resolve,reject){
-				browser.storage.local.get(domains).then(
-					function(returnObj){resolve(returnObj)},
-					function(error){
-						reject("載入 "+domains+" options 失敗:"+`${error}`)
-					}
-				)
+				if(browserType.match(/Firefox/i)){
+					browser.storage.local.get(domains).then(
+						function(returnObj){resolve(returnObj)},
+						function(error){
+							reject("載入 "+domains+" options 失敗:"+`${error}`)
+						}
+					)
+				}
+				else if(browserType.match(/Chrome/i)){
+					browser.storage.local.get(
+						domains,function(items){resolve(items)}
+					)
+				}
+				else{
+					reject("未知的瀏覽器:"+browserType)
+				}
 			}
 		)
 	)
-}*/
+}
 
 var checkObjEqual = function(a1,a2){
 	// if(a1 instanceof Array && a2 instanceof Array){
@@ -96,16 +138,15 @@ var checkObjEqual = function(a1,a2){
 	}
 	return(true)
 }
-// 若firefox 版本>=57 runTaskQuantityAt1Time預設為20
-var getBrowserVersion = function(){
-	var matchVersionObj = navigator.userAgent.match(
-		/(?:firefox)\/(\d+(?:\.\d+)?)/im)
-	if(matchVersionObj){
-		var version = Number(matchVersionObj[1])
-
-		return(version)
-		
-	}
+var customCssElemId = "customCss"
+var loadCustomCss = function(cssFilePathName,pasteElem){
+	var customCssElem = document.createElement("link")
+	customCssElem.rel = "stylesheet"
+	customCssElem.type="text/css"
+	customCssElem.href = browser.extension.getURL(cssFilePathName)
+	customCssElem.id = customCssElemId
+	pasteElem.appendChild(customCssElem)
+	return(customCssElem)
 }
 var propertyInfo = {}
 var propertys = [
@@ -122,7 +163,7 @@ var loadPropertyInfo = function(){
 	// color
 	propertyInfo["color"] = {
 		transMethod:fontMethod,
-		transFunc:function(obj,getStyleObj,setStyleObj,propertyVal,property){
+		transFunc:function(obj,getStyleObj,setStyleObj,property,propertyVal){
 
 			var newPropertyVal = fullColorStrBrightnessTransFunc(
 				propertyVal,propertyInfo[property].transMethod)
@@ -139,7 +180,7 @@ var loadPropertyInfo = function(){
 	// background-color
 	propertyInfo["background-color"] = {
 		transMethod:backgroundMethod,
-		transFunc:function(obj,getStyleObj,setStyleObj,propertyVal,property){
+		transFunc:function(obj,getStyleObj,setStyleObj,property,propertyVal){
 
 			var newPropertyVal = fullColorStrBrightnessTransFunc(
 				propertyVal,propertyInfo[property].transMethod)
@@ -151,7 +192,7 @@ var loadPropertyInfo = function(){
 	// background-image
 	propertyInfo["background-image"] = {
 		transMethod:backgroundMethod,
-		transFunc:function(obj,getStyleObj,setStyleObj,propertyVal,property){
+		transFunc:function(obj,getStyleObj,setStyleObj,property,propertyVal){
 
 			var transMethod = propertyInfo[property].transMethod
 			// 更改純顏色部份
@@ -161,22 +202,19 @@ var loadPropertyInfo = function(){
 			var changeFlag = Boolean(newPropertyVal)
 			if(changeFlag){propertyVal = newPropertyVal}
 
-			var hasBgImgFlag = false
 			// 若背景圖亮度需要調整 送到 bgImgUrlBrightnessTrans
-			if(propertyVal.match(/url\(.+?\)/im)){
-				hasBgImgFlag = true
-				if(typeof(optionInfo.bgImgBrightness.value) === "number"){
-					changeFlag = true
-					newPropertyVal = bgImgUrlBrightnessTrans(
-						propertyVal,optionInfo.bgImgBrightness.value)
-					/*imgElemBrightnessTrans(
-						getStyleObj,setStyleObj,optionInfo.bgImgBrightness.value)*/
-				}
+			if(typeof(optionInfo.bgImgBrightness.value) === "number"){
+				// if(obj instanceof Element){
+					if(propertyVal.match(/url\(.+?\)/im)){
+					
+						changeFlag = true
+						newPropertyVal = bgImgUrlBrightnessTrans(
+							getStyleObj,setStyleObj,
+							propertyVal,optionInfo.bgImgBrightness.value
+						)
+					}
+				// }
 			}
-			/*if(hasBgImgFlag && (obj instanceof Element) && (obj.childNodes.length === 0)){
-				// 加上邊框
-				addWhiteBorder(getStyleObj,setStyleObj)
-			}*/
 
 			if(!changeFlag){return(null)}
 			// console.log(selectorText,property,":")
@@ -189,16 +227,6 @@ var loadPropertyInfo = function(){
 }
 
 loadPropertyInfo()
-var customCssElemId = "customCss"
-var loadCustomCss = function(cssFilePathName,pasteElem){
-	var customCssElem = document.createElement("link")
-	customCssElem.rel = "stylesheet"
-	customCssElem.type="text/css"
-	// customCssElem.href = browser.extension.getURL(cssFilePathName)
-	customCssElem.id = customCssElemId
-	pasteElem.appendChild(customCssElem)
-	return(customCssElem)
-}
 var addWhiteBorder = function(getStyleObj,setStyleObj){
 	// 若沒有加drop-shadow 就加上
 	var filterProperty = getStyleObj.getPropertyValue("filter")
@@ -433,36 +461,40 @@ var oldAttributeTransObj = {
 
 var nodeToFuncPointer = function(node){
 	if(node.nodeType === 1){
-		if(node.dataset.hasOwnProperty("reStyleCount")){
-			var count = Number(node.dataset.reStyleCount)+1
-		}
-		else{
-			var count = 1
-		}
-		node.dataset.reStyleCount = String(count)
-
-		let elemTagName = node.tagName.toLowerCase()
-		
-		try{
-			// 載入tagName 對應的功能
-			if(tagNameToFunc.hasOwnProperty(elemTagName)){
-				var childFlag = tagNameToFunc[elemTagName](node)
-				return(childFlag)
+		if(node.dataset instanceof DOMStringMap){
+			// changeStyleTimes
+			if(node.dataset.hasOwnProperty("changeStyleTimes")){
+				var count = Number(node.dataset.changeStyleTimes)+1
 			}
 			else{
-				// 若是沒見過的tagName 寫入對應功能
-				tagNameToFunc[elemTagName] = function(node){
-					// oldStyleTransFunc(node)
-					addToTask(node)
-					return(true)
-				}
-				var childFlag = tagNameToFunc[elemTagName](node)
-
-				return(childFlag)
+				var count = 1
 			}
-		}
-		catch(error){
-			console.warn("Error:",error)
+			node.dataset.changeStyleTimes = String(count)
+
+			// nodeToFunc
+			let elemTagName = node.tagName.toLowerCase()
+			
+			try{
+				// 載入tagName 對應的功能
+				if(tagNameToFunc.hasOwnProperty(elemTagName)){
+					var childFlag = tagNameToFunc[elemTagName](node)
+					return(childFlag)
+				}
+				else{
+					// 若是沒見過的tagName 寫入對應功能
+					tagNameToFunc[elemTagName] = function(node){
+						// oldStyleTransFunc(node)
+						addToTask(node)
+						return(true)
+					}
+					var childFlag = tagNameToFunc[elemTagName](node)
+
+					return(childFlag)
+				}
+			}
+			catch(error){
+				console.error("Error:",error)
+			}
 		}
 	}
 }
@@ -494,7 +526,7 @@ var imgElemFunc = function(elem){
 					getComputedStyle(elem),elem.style,
 					optionInfo.imgBrightness.value)
 			}
-		},300,elem
+		},0,elem
 	)
 }
 
@@ -549,6 +581,7 @@ var tagNameToFunc = {
 	"meta":noFunc,
 	"title":noFunc,
 	"noscript":noFunc,
+	"br":noFunc,
 	"head":function(elem){return(true)},
 	"math":function(elem){},
 	// 
@@ -605,7 +638,7 @@ var reStyleFunc = function(obj){
 			else{
 				//沒有紀錄就計算格式
 				var newPropertyVal = propertyInfo[eachProperty].transFunc(
-					obj,getStyleObj,setStyleObj,propertyVal,eachProperty)
+					obj,getStyleObj,setStyleObj,eachProperty,propertyVal)
 				// newElemStyleStr為null的情況:
 				// 1.未預期的格式
 				// 2.格式錯誤
@@ -643,15 +676,20 @@ var reStyleFunc = function(obj){
 
 
 var nodeTasks = []
+// 隱藏node延後處理
+var hideNodeTasks = []
 
 var addToTask = function(node,insertPos = -1){
-	var hasTaskFlag = nodeTasks.length>0
+	var hasTaskFlag = (nodeTasks.length+hideNodeTasks.length)>0
 
-	if( (insertPos < 0) || (insertPos > nodeTasks.length) ){
-		insertPos = nodeTasks.length
+	if(node.style.display === "none"){var tasks = hideNodeTasks}
+	else{var tasks = nodeTasks}
+
+	if( (insertPos < 0) || (insertPos > tasks.length) ){
+		insertPos = tasks.length
 	}
-	nodeTasks.splice(insertPos, 0, node)
-	
+	tasks.splice(insertPos, 0, node)
+
 	// 若沒有在運行任務 就開始任務
 	if(!hasTaskFlag){
 		setTimeout(processTask,0)
@@ -660,23 +698,31 @@ var addToTask = function(node,insertPos = -1){
 }
 
 var processTask = function(){
-	var runTaskQuantity = Math.min(
-		optionInfo.runTaskQuantityAt1Time.value,
-		nodeTasks.length
-	)
-
 	var i = 0
-	while(i<runTaskQuantity){
-		var node = nodeTasks.shift()
-		reStyleFunc(node)
+	while(i<optionInfo.runTaskQuantityAt1Time.value){
+		if(nodeTasks.length>0){
+			reStyleFunc(nodeTasks.shift())
+		}
+		else if(hideNodeTasks.length>0){
+			reStyleFunc(hideNodeTasks.shift())
+		}
+		else{
+			break
+		}
 		i++
 	}
-	if(nodeTasks.length>0){setTimeout(processTask,0)}
-	// else{setTimeout(processTask,500)}
+	if((nodeTasks.length+hideNodeTasks.length)>0){
+		setTimeout(processTask,0)
+	}
 }
 
+var showTasksLenElem = null
+
 var creatShowTasksLenElem = function(){
-	var showTasksLenElem = document.createElement("div")
+	if(showTasksLenElem instanceof Element){
+		return(null)
+	}
+	showTasksLenElem = document.createElement("div")
 	showTasksLenElem.style.position = "fixed"
 	showTasksLenElem.style.bottom = "0px"
 	showTasksLenElem.style.right = "0px"
@@ -686,11 +732,18 @@ var creatShowTasksLenElem = function(){
 	showTasksLenElem.style.color = "white"
 
 	showTasksLenElem.style.boxShadow = "0px 0px 5px 0px white"
-	
+	// showTasksLenElem.style.setProperty("pointer-events","none")
+
 	showTasksLenElem.onmouseenter = function(event){
 		event.target.style.opacity = "0"
-		// event.target.style.setProperty("pointer-events","none")
-		setTimeout(function(elem){elem.style.opacity = "1"},1000,event.target)
+		event.target.style.setProperty("pointer-events","none")
+
+		setTimeout(
+			function(elem){
+				elem.style.opacity = "1"
+				elem.style.setProperty("pointer-events","auto")
+			},2000,event.target
+		)
 	}
 	/*showTasksLenElem.onmouseleave = function(event){
 		event.target.style.opacity = "0.8"
@@ -698,15 +751,16 @@ var creatShowTasksLenElem = function(){
 	document.body.appendChild(showTasksLenElem)
 
 	var updateTasksLen = function(elem){
-		if(nodeTasks.length>0){
+		var tasksSum = nodeTasks.length+hideNodeTasks.length
+		if(tasksSum>1){
 			elem.innerText = 
-				// browser.i18n.getMessage("showTaskLenText")+
-				String(nodeTasks.length)
+				browser.i18n.getMessage("showTaskLenText")+String(tasksSum)
 
 			setTimeout(updateTasksLen,500,elem)
 		}
 		else{
 			elem.remove()
+			showTasksLenElem = null
 		}
 	}
 	updateTasksLen(showTasksLenElem)
@@ -792,7 +846,7 @@ var setTopIfNoProperty = function(docElem){
 	}
 }
 // 背景圖片亮度變暗功能
-var bgImgUrlBrightnessTrans = function(bgImgStr,brightness){
+var bgImgUrlBrightnessTrans = function(getStyleObj,setStyleObj,bgImgStr,brightness){
 	
 	var blackBgOpacity = 1-brightness
 	var bgRgbaStr = "rgba(0, 0, 0, "+String(blackBgOpacity)+")"
@@ -800,9 +854,51 @@ var bgImgUrlBrightnessTrans = function(bgImgStr,brightness){
 
 	if(bgImgStr.indexOf(addBgStr)<0){
 		bgImgStr = addBgStr+", "+bgImgStr
+
+		for(let eachProperty in newBackgroundPropertyToValue){
+			var eachPropertyVal = getStyleObj.getPropertyValue(eachProperty)
+			// 載入初始值
+			if(!eachPropertyVal){
+				eachPropertyVal = "initial"
+			}
+
+			var newEachPropertyVal = newBackgroundPropertyToValue[eachProperty]+","+eachPropertyVal
+			setStyleObj.setProperty(eachProperty,newEachPropertyVal)
+			// console.log(eachProperty,newEachPropertyVal)
+		}
 	}
 	return(bgImgStr)
 }
+
+var backgroundPropertys = ["background-image","background-position","background-size","background-repeat","background-attachment","background-origin","background-clip","background-color"]
+
+var getAllBackgroundPropertyStr = function(getStyleObj){
+	var propertyVals = []
+	for(let eachProperty of backgroundPropertys){
+		eachPropertyVal = getStyleObj.getPropertyValue(eachProperty)
+		if(eachPropertyVal){propertyVals.push(eachPropertyVal)}
+	}
+	return(propertyVals.join(" "))
+}
+
+var initBackgroundPropertyToValue = {
+	"background-repeat":"no-repeat",
+	"background-attachment":"scroll",
+	"background-position": "0% 0%",
+	"background-size": "auto auto",
+	"background-origin": "padding-box",
+	"background-clip": "border-box",
+}
+
+var newBackgroundPropertyToValue = {
+	"background-repeat":"no-repeat",
+	"background-attachment":"fixed",
+	"background-position": "0% 0%",
+	"background-size": "auto auto",
+	"background-origin": "padding-box",
+	"background-clip": "border-box",
+}
+
 
 /*var bgImgUrlBrightnessTrans = function(
 	setStyleObj,propertyVal,targetBrightness){
@@ -1422,7 +1518,12 @@ var styleSheetBrightnessTransFunc = function(sheet){
 			return(true)
 		}
 		else{
-			console.warn("styleSheetBrightnessTransFunc:sheet.cssRules is not CSSRuleList:",sheet)
+			if((!sheet.disabled) && sheet.href){
+				try{
+					requestStyleSheetLink(sheet)
+				}
+				catch(error){console.error(error)}
+			}
 		}
 	}
 	catch(error){
@@ -1434,15 +1535,11 @@ var styleSheetBrightnessTransFunc = function(sheet){
 				try{
 					requestStyleSheetLink(sheet)
 				}
-				catch(error){
-					console.warn(error)
-				}
+				catch(error){console.error(error)}
 			}
 		}
 		//其他問題
-		else{
-			console.error(error)
-		}
+		else{console.error(error)}
 	}
 	return(false)
 }
@@ -1630,27 +1727,6 @@ if(optionInfo.changeColorFlag.value){
 
 var reStyleDocElem = async function(docElem){
 
-	var version = getBrowserVersion()
-	if(version>=57){
-		optionInfo.runTaskQuantityAt1Time.value = 20
-	}
-
-	var domain = urlToDomain(document.URL)
-	console.log("domain:",domain)
-	var domains = ["",domain]
-	
-	// 讀取option
-	/*var optionObj = await loadOptions(domains)
-	// console.log("browser.storage.local.get optionObj:",optionObj)
-	for(let eachDomain of domains){
-		if(!optionObj.hasOwnProperty(eachDomain)){continue}
-		for(let key of optionKeys){
-			if(!optionObj[eachDomain].hasOwnProperty(key)){continue}
-			if(optionObj[eachDomain][key] === null){continue}
-			optionInfo[key].value = optionObj[eachDomain][key]
-			console.log("load option:",key,optionInfo[key].value)
-		}
-	}*/
 
 		
 	if(optionInfo.changeColorFlag.value || typeof(optionInfo.minFontSize.value) === "number"){

@@ -5,18 +5,12 @@
 
 	"description":"__MSG_extensionDescription__",
 
-	"version":"0.4.7",
+	"version":"0.4.6",
 
 	"icons": {
 		"64": "icons/icon-64.png"
 	},
 
-	"applications": {
-		"gecko": {
-			"id": "@darkerbackgroundbrighterbiggerfontaddon",
-			"strict_min_version": "52.0"
-		}
-	},
 
 	"permissions": [
 		"<all_urls>",
@@ -43,16 +37,9 @@
 	},
 	"options_ui":{
 		"page": "OptionPage/buttonPanel.html",
-		"browser_style":false,
 		"open_in_tab":false
 	},
 	"browser_action": {
-		"default_popup": "OptionPage/buttonPanel.html",
-		"default_title": "__MSG_extensionName__",
-		"default_icon": "icons/icon-64.png"
-	},
-	
-	"page_action": {
 		"default_popup": "OptionPage/buttonPanel.html",
 		"default_title": "__MSG_extensionName__",
 		"default_icon": "icons/icon-64.png"

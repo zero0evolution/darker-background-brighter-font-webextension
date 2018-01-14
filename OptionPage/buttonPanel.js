@@ -4,34 +4,25 @@ window.onload = async function(){
 	// navigator.userAgent
 	// firefox android:"Mozilla/5.0 (Android 6.0.1; Mobile; rv:57.0) Gecko/57.0 Firefox/57.0"
 	// firefox developer edition:"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0"
-	if(navigator.userAgent.match(/mobile/i)){
-		loadCustomCss("OptionPage/optionPage-mobile.css",document.head)
+	var browserTypeToCssPath = {
+		"Firefox Mobile":"OptionPage/optionPage-FirefoxMobile.css",
+		"Firefox":"OptionPage/optionPage-Firefox.css",
+		"Chrome":"OptionPage/optionPage-Firefox.css",
 	}
-	else{
-		loadCustomCss("OptionPage/optionPage-desktop.css",document.head)
-	}
-
-	// 若firefox 版本>=57 runTaskQuantityAt1Time預設數字為20
-	var browserInfo = await getBrowserInfo()
-	console.log(browserInfo)
-	if(browserInfo.name.match(/^Firefox$/i)){
-		var versionMatchObj = browserInfo.version.match(/^\d+(?:\.\d+)/)
-		if(versionMatchObj){
-			var version = Number(versionMatchObj[0])
-			if(version >= 57){
-				optionInfo.runTaskQuantityAt1Time.defaultNumValue = 20
-			}
-		}
+	if(browserTypeToCssPath.hasOwnProperty(browserType)){
+		loadCustomCss(browserTypeToCssPath[browserType],document.head)
 	}
 
 	// get domains
 	var tab = await getCurrentPageTab()
-	var framesInfo = await browser.webNavigation.getAllFrames({tabId:tab.id})
+	var framesInfo = await getCurrentPageFramesInfo(tab)
+	var mainDomain = ""
 	var domains = new Set()
 	for (let frameInfo of framesInfo){
 		if(typeof(frameInfo.url) === "string"){
 			// console.log(frameInfo.url)
 			var domain = urlToDomain(frameInfo.url)
+			if(frameInfo.frameId === 0){mainDomain = domain}
 			domains.add(domain)
 		}
 	}
@@ -39,6 +30,11 @@ window.onload = async function(){
 
 	if(domains.size>0){
 		// 
+		var selectTextElem = document.createElement("span")
+		selectTextElem.innerText = browser.i18n.getMessage("selectDomainDescription")
+		document.body.appendChild(selectTextElem)
+		document.body.appendChild(document.createElement("br"))
+
 		var selectTextElem = document.createElement("span")
 		selectTextElem.innerText = browser.i18n.getMessage("selectDomainText")
 		document.body.appendChild(selectTextElem)
@@ -99,6 +95,23 @@ window.onload = async function(){
 				// add reload text
 				document.body.appendChild(createReloadButton())
 			}
+			// add other buttons
+			var otherButtonsBlock = document.createElement("div")
+			otherButtonsBlock.classList.add("optionBlock")
+			document.body.appendChild(otherButtonsBlock)
+
+			// 建立"前往全域設定頁"按鈕
+			var goGlobalSettingButton = createGoGlobalSettingButton()
+			
+			goGlobalSettingButton.onclick = function(event){
+				domainSelectElem.value = ""
+				changeDomainFunc()
+			}
+			otherButtonsBlock.appendChild(goGlobalSettingButton)
+
+			for(let button of linkButtons){
+				otherButtonsBlock.appendChild(button)
+			}
 		}
 
 		domainSelectElem.onchange = changeDomainFunc
@@ -116,33 +129,14 @@ window.onload = async function(){
 			domainSelectElem.appendChild(optionElem)
 		}
 
-		// 建立"前往全域設定頁"按鈕
 
-		var goGlobalSettingButton = document.createElement("div")
-		goGlobalSettingButton.id = "goGlobalSettingButton"
-		goGlobalSettingButton.innerText = browser.i18n.getMessage("goGlobalSettingText")
-		document.body.appendChild(goGlobalSettingButton)
-		goGlobalSettingButton.onclick = function(event){
-			// domainSelectElem.selectedIndex = domainSelectElem.children.length-1
-			domainSelectElem.value = ""
-			changeDomainFunc()
-		}
-		// 建立贊助按鈕
-		var supportDeveloperButton = document.createElement("div")
-		supportDeveloperButton.id = "supportDeveloperButton"
-		supportDeveloperButton.innerText = browser.i18n.getMessage("supportDeveloperText")
-		document.body.appendChild(supportDeveloperButton)
-		supportDeveloperButton.onclick = function(event){
-			window.open("https://www.paypal.me/zero0evolution/0USD")
-			window.close()
-		}
 
 		// 選擇第一個選項並生成設定頁面
-		if(domainSelectElem.firstChild.value === "about:addons"){
+		if(["about:addons","chrome://extensions"].indexOf(mainDomain)>-1){
 			domainSelectElem.value = ""
 		}
 		else{
-			domainSelectElem.value = domainSelectElem.firstChild.value
+			domainSelectElem.value = mainDomain
 		}
 		changeDomainFunc()
 	}

@@ -15,6 +15,9 @@
 	"selectDomainText":{
 		"message": "Select domain:"
 	},
+	"selectDomainDescription":{
+		"message":"Users can use different settings for each domain."
+	},
 	"globalSettingText":{
 		"message": "Global Setting Page"
 	},
@@ -29,8 +32,21 @@
 		"message": "If change setting, need reload page to apply new setting."
 	},
 	"showTaskLenText":{
-		"message": "need change elements number:"
+		"message": "Need change elements number:"
 	},
+
+
+	"commentInMozilla":{
+		"message": "Comment in addons.mozilla.org"
+	},
+	"commentInGoogle":{
+		"message": "Comment in google web store"
+	},
+	"reportBugInGithub":{
+		"message": "Report Bug In Github"
+	},
+
+	
 
 	"true":{"message":"ON"},
 	"false":{"message":"OFF"},

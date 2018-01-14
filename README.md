@@ -10,23 +10,23 @@ Firefox addon現在支援firefox 57+(Now support firefox 57+):
 https://addons.mozilla.org/firefox/addon/darker-bg-brighter-font  
 
 
-Google chrome extension(old version):  
+Google chrome extension:  
 https://chrome.google.com/webstore/detail/mdolidbiejfnaejdoagjacapnichoccj  
 
 
 功能(Features):  
 	背景顏色變暗、字顏色變亮功能  
-	Darken background color and brighten font color  
+	Darken background color and brighten font color.  
 	降低圖片與背景圖片亮度  
-	Decrease "image and background image" brightness  
+	Decrease "image and background image" brightness.  
 	可調整"更改頁面格式速度"  
-	Adjustable "change style speed"  
+	Adjustable "change style speed".  
 	放大字體功能(預設為關閉)  
-	Enlarge font size (default is trun off)  
+	Enlarge font size (default is trun off).  
 	針對每個網域的設定頁面(在瀏覽網頁時點選附加元件按鈕)  
-	Setting page for every domain (click the addon button when user browsing)  
+	Setting page for every domain (click the addon button when user browsing).  
 	全域設定頁面 (在 about:addons => 此附加元件選項)  
-	Global setting page for all domain (in about:addons => this addon options)  
+	Global setting page for all domain (in about:addons => this addon options).  
 
 
 在更改設定後，需重新整理網頁，設定才會套用到網頁上。  

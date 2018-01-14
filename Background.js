@@ -5,16 +5,6 @@ var init = async function(){
 	var globalSetting = await loadOptions([""])
 	if(!globalSetting.hasOwnProperty("")){
 
-		// 若版本大於57 將runTaskQuantityAt1Time 初始值調為20
-		var browserInfo = await getBrowserInfo()
-		var versionMatchObj = browserInfo.version.match(/^\d+(?:\.\d+)?/)
-		if(versionMatchObj){
-			var version = Number(versionMatchObj[0])
-			if(version>=57){
-				optionInfo["runTaskQuantityAt1Time"].value = 20
-			}
-		}
-
 		// 寫入初始設定
 		var initGlobalSetting = {}
 		initGlobalSetting[""] = {}
@@ -24,36 +14,43 @@ var init = async function(){
 		saveOptions(initGlobalSetting)
 	}
 
-	// 設定每個頁面都顯示pageAction
-	browser.tabs.query({}).then(
-		(tabs) => {
-			for (let tab of tabs) {
-				browser.pageAction.show(tab.id)
+	if(browserType.match(/Firefox/i)){
+		
+		// 設定顯示pageAction(在網址列右邊有個圖示可點選)
+		// 設定每個頁面都顯示pageAction
+		browser.tabs.query({}).then(
+			(tabs) => {
+				for (let tab of tabs) {
+					setTabPageAction(tab)
+				}
 			}
-		}
-	)
-	browser.tabs.onUpdated.addListener(
-		(tabId, changeInfo, tab) => {
-			browser.pageAction.show(tab.id)
-		}
-	)
+		)
+		browser.tabs.onUpdated.addListener(
+			(tabId, changeInfo, tab) => {
+				setTabPageAction(tab)
+			}
+		)
+	}
+}
+
+var setTabPageAction = function(tab){
+	browser.pageAction.show(tab.id)
 }
 init()
 
+// report bug button(github & email)
+
+// chrome bug:css檔request 問題
 
 // input text color
 
-// 顯示剩餘數量bug
-
 // 顏色轉換調整
 
-// 儲存次數修改
+// 儲存次數過多
 
 // 在頁面內開啟選單(取消存取頁面權限)
 
-// 頁面下每個iframe 都有自己的domain
-
-// 建立elem style mutation observer
+// 建立 elem style mutation observer
 
 // bug:
 // background-image 混在暗色背景中看不到

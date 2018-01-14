@@ -59,38 +59,37 @@ def getAllJsFile(path = "."):
 
 files = [
 	"optionInfo.js",
-	"lib/urlToDomain.js",
-	"lib/loadOptions.js",
-	"lib/checkObjEqual.js",
-	
+				"lib/browserInit.js",
+				"lib/urlToDomain.js",
+				"lib/loadOptions.js",
+				"lib/checkObjEqual.js",
+				"lib/loadCustomCss.js",
 
-	"content script/getBrowserVersion.js",
-	"content script/propertyInfo.js",
-	"content script/customCss.js",
-	"content script/addWhiteBorder.js",
-	"content script/changeMinFontSize.js",
-	"content script/checkElemHasTextNode.js",
-	"content script/getSelectorText.js",
-	"content script/oldStyleTransFunc.js",
-	"content script/nodeToFuncPointer.js",
-	"content script/reStyleFunc.js",
-	"content script/task.js",
-	"content script/setTopIfNoProperty.js",
+				"ContentScript/propertyInfo.js",
+				"ContentScript/addWhiteBorder.js",
+				"ContentScript/changeMinFontSize.js",
+				"ContentScript/checkElemHasTextNode.js",
+				"ContentScript/getSelectorText.js",
+				"ContentScript/oldStyleTransFunc.js",
+				"ContentScript/nodeToFuncPointer.js",
+				"ContentScript/reStyleFunc.js",
+				"ContentScript/task.js",
+				"ContentScript/setTopIfNoProperty.js",
 
-	"content script/brightnessTrans/bgImgStrBrightnessTrans.js",
-	"content script/brightnessTrans/colorNameToRgb.js",
-	"content script/brightnessTrans/colorStrBrightnessTrans.js",
-	"content script/brightnessTrans/colorTransRecordObj.js",
-	"content script/brightnessTrans/fullColorStrBrightnessTransFunc.js",
-	"content script/brightnessTrans/imgElemBrightnessTrans.js",
-	"content script/brightnessTrans/rgbNumsBrightnessTrans.js",
-	"content script/brightnessTrans/styleSheetBrightnessTransFunc.js",
+				"ContentScript/brightnessTrans/bgImgStrBrightnessTrans.js",
+				"ContentScript/brightnessTrans/colorNameToRgb.js",
+				"ContentScript/brightnessTrans/colorStrBrightnessTrans.js",
+				"ContentScript/brightnessTrans/colorTransRecordObj.js",
+				"ContentScript/brightnessTrans/fullColorStrBrightnessTransFunc.js",
+				"ContentScript/brightnessTrans/imgElemBrightnessTrans.js",
+				"ContentScript/brightnessTrans/rgbNumsBrightnessTrans.js",
+				"ContentScript/brightnessTrans/styleSheetBrightnessTransFunc.js",
 
-	"content script/creatNewNodeObserver.js",
-	"content script/creatStyleSheetMutationObserver.js",
+				"ContentScript/creatNewNodeObserver.js",
+				"ContentScript/creatStyleSheetMutationObserver.js",
 
 
-	"content script/init.js",
-	"content script/main.js"
+				"ContentScript/init.js",
+				"ContentScript/main.js"
 ]
 combineJsFiles("allCode.js",files)

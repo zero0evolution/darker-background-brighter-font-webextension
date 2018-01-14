@@ -8,7 +8,6 @@ var createSlider = function(eachOptionInfo){
 	}
 
 	var sliderContainerElem = document.createElement("span")
-	sliderContainerElem.style.setProperty("min-width","30%")
 	sliderContainerElem.classList.add("sliderContainer")
 	sliderContainerElem.classList.add("option")
 	sliderContainerElem.dataset.value = value

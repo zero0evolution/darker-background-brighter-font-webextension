@@ -1,11 +1,6 @@
 
 var reStyleDocElem = async function(docElem){
 
-	var version = getBrowserVersion()
-	if(version>=57){
-		optionInfo.runTaskQuantityAt1Time.value = 20
-	}
-
 	var domain = urlToDomain(document.URL)
 	console.log("domain:",domain)
 	var domains = ["",domain]

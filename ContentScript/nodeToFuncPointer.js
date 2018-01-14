@@ -22,13 +22,12 @@ var nodeToFuncPointer = function(node){
 				}
 				else{
 					// 若是沒見過的tagName 寫入對應功能
-					tagNameToFunc[elemTagName] = function(node){
-						// oldStyleTransFunc(node)
-						addToTask(node)
+					tagNameToFunc[elemTagName] = function(elem){
+						// oldStyleTransFunc(elem)
+						addToTask(elem)
 						return(true)
 					}
 					var childFlag = tagNameToFunc[elemTagName](node)
-
 					return(childFlag)
 				}
 			}
@@ -72,8 +71,19 @@ var imgElemFunc = function(elem){
 
 var styleElemFunc = function(elem){
 	if(elem.id === customCssElemId){return(null)}
+	// console.log(elem,elem.sheet)
+	// firefox 可以直接使用elem.sheet
 	if(elem.sheet instanceof StyleSheet){
 		var success = styleSheetBrightnessTransFunc(elem.sheet)
+	}
+	else{
+		// chrome 要等完成才可使用elem.sheet 否則elem.sheet為null 而不是 StyleSheet Obj
+		elem.onload = function(event){
+			var elem = event.target
+			if(elem.sheet instanceof StyleSheet){
+				var success = styleSheetBrightnessTransFunc(elem.sheet)
+			}
+		}
 	}
 }
 

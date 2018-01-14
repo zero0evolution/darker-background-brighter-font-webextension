@@ -11,10 +11,10 @@ body{
 	border-style:solid;
 	height:auto;
 }
-button,#goGlobalSettingButton,#supportDeveloperButton,.option{
+button,.option,#goGlobalSettingButton,#supportDeveloperButton,#reportBugInGithubButton,#commentInMozillaButton,#commentInGoogleButton{
 	background-color:inherit;
 	color:#FFFFFF;
-	margin:0.1em 0px 0.1em 0.1em;
+	margin:0.2em 0px 0.2em 0.2em;
 	padding:0px;
 	border-width:0.05em;
 	border-color:#FFFFFF;
@@ -57,7 +57,7 @@ select,option,optgroup{
 	background-color: #272C31;
 	border: solid 0.1em #E8E8E8;
 	color: #E8E8E8;
-	padding: 0.1em;
+	padding: 0.2em;
 	border-radius: 0.4em;
 	left:15%;
 	right:0%;
@@ -69,7 +69,6 @@ select,option,optgroup{
 	/*最上層*/
 	z-index: 1;
 	/*0.5秒淡出動畫*/
-	font-size:0.9rem;
 	line-height:1em;
 
 	pointer-events:none;
@@ -77,6 +76,15 @@ select,option,optgroup{
 }
 .tooltip:hover .tooltiptext {
 	visibility: visible;
+}
+.tooltip .tooltiptext::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 2%;
+	border-width: 8px;
+	border-style: solid;
+	border-color: white transparent transparent transparent;
 }
 
 .option{
