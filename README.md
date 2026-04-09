@@ -47,4 +47,4 @@ https://github.com/zero0evolution/darker-background-brighter-font-webextension/
 https://github.com/zero0evolution/darker-background-brighter-font-webextension/issues  
 
 支持開發者(Support developer):  
-https://www.paypal.me/zero0evolution/0USD  
+Bitcoin: bc1qruxcgmu5muw7j004p4zvsqzzzcd78252zzmlnw
